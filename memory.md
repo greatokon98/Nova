@@ -171,3 +171,42 @@ Deployed to Vercel but production domain showed "No Production Deployment" error
 
 ### Commit
 `39ab04a` — "fix: server-side /admin auth gate — no more flash of unauthenticated content"
+
+---
+
+## 2026-08-19 — Mobile Spacing & Footer Fix
+
+### Changes
+
+#### `public/styles.css` — line 514 (mobile media query)
+- Added `.hero { min-height: auto; padding: 100px 20px 30px; }` inside `@media (max-width: 860px)`
+- Removed forced `min-height: 100vh` on mobile so hero shrinks to content
+- Reduced gap between stats counters and "Selected Work" section
+
+#### `public/index.html` — line 199
+- Footer text: "Built with care & a little SQLite." → "Design & manage by GEO creative studio."
+
+### Commit
+`5e6aaf9` — "fix: mobile hero gap + update footer text to GEO creative studio"
+
+---
+
+## Final Project State
+
+### Tech Stack
+- **Backend:** Express 5 + PostgreSQL (Neon) via `pg`
+- **Auth:** JWT cookie (httpOnly, secure, SameSite strict, 12h expiry)
+- **Hosting:** Vercel (serverless) + Neon (serverless Postgres)
+- **Frontend:** Vanilla JS, no framework
+
+### Environment Variables (Vercel Dashboard)
+| Key | Value |
+|-----|-------|
+| `DATABASE_URL` | Neon PostgreSQL connection string |
+| `JWT_SECRET` | `19f1107f70bf87a62a6315c317a04de5c444aa16000d3838a667bc86d0df344d` |
+| `ADMIN_PASSWORD` | `nova_admin_2026!` |
+| `NODE_ENV` | `production` |
+
+### GitHub
+- Repo: https://github.com/greatokon98/Nova
+- Latest commit: `5e6aaf9`
