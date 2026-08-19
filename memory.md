@@ -123,6 +123,7 @@ Deployed to Vercel but production domain showed "No Production Deployment" error
    - `DATABASE_URL` = Neon connection string
    - `JWT_SECRET` = `19f1107f70bf87a62a6315c317a04de5c444aa16000d3838a667bc86d0df344d`
    - `ADMIN_PASSWORD` = `nova_admin_2026!`
+   - `NODE_ENV` = `production`
 4. Vercel auto-deploys on push
 
 ### Files Untouched (UI)
