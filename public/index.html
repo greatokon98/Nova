@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova — Digital Studio for Ambitious Brands</title>
+  <meta name="description" content="A boutique digital studio crafting premium websites, brands and products for teams that mean business. $10k engagements and up." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a class="brand" href="#top">nova<span class="dot">.</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#testimonials">Clients</a></li>
+    </ul>
+    <a class="btn btn-primary nav-cta" href="#contact">Start a project</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <header class="hero" id="top">
+    <p class="eyebrow reveal">Digital Studio · est. 2019</p>
+    <h1 class="hero-title reveal">
+      We design &amp; build the digital faces of <span class="accent">$10k+</span> brands.
+    </h1>
+    <p class="hero-sub reveal">
+      Nova partners with founders and teams who are serious about their next chapter —
+      strategy, brand, and product in one seat at the table.
+    </p>
+    <div class="hero-actions reveal">
+      <a class="btn btn-primary" href="#contact">Book a discovery call</a>
+      <a class="btn btn-outline" href="#work">See the work</a>
+    </div>
+
+    <div class="stats" id="stats">
+      <div class="stat">
+        <span class="stat-num" data-target="18" data-suffix="+">0</span>
+        <span class="stat-label">Projects shipped</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" id="statRevenue" data-target="201" data-prefix="$" data-suffix="K">0</span>
+        <span class="stat-label">Revenue generated</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num" data-target="0">0</span>
+        <span class="stat-label">Active clients</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" id="work">
+      <div class="section-head">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="section-title">Proof, not promises.</h2>
+      </div>
+
+      <div class="filters" id="filters" role="tablist" aria-label="Project filters">
+        <button class="filter active" data-filter="All">All</button>
+        <button class="filter" data-filter="Web Design">Web Design</button>
+        <button class="filter" data-filter="Web Development">Web Development</button>
+        <button class="filter" data-filter="Branding">Branding</button>
+        <button class="filter" data-filter="Product Design">Product Design</button>
+      </div>
+
+      <div class="grid" id="grid" aria-live="polite">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="services">
+      <div class="section-head">
+        <p class="eyebrow">Services</p>
+        <h2 class="section-title">One partner, every layer of the build.</h2>
+      </div>
+      <div class="services">
+        <article class="service reveal">
+          <span class="service-num">01</span>
+          <h3>Brand &amp; Identity</h3>
+          <p>Naming, logo systems, voice and guidelines that make your company unmistakable. $12k–$28k engagements.</p>
+        </article>
+        <article class="service reveal">
+          <span class="service-num">02</span>
+          <h3>Website Design</h3>
+          <p>Conversion-focused marketing sites designed around one job: turning attention into pipeline. $10k–$25k.</p>
+        </article>
+        <article class="service reveal">
+          <span class="service-num">03</span>
+          <h3>Development</h3>
+          <p>Headless builds, dashboards and e-commerce that load fast, rank well and never break. $15k–$60k.</p>
+        </article>
+        <article class="service reveal">
+          <span class="service-num">04</span>
+          <h3>Product Design</h3>
+          <p>Research-driven UX and UI for software your customers actually love to use. $20k–$50k.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="process">
+      <div class="section-head">
+        <p class="eyebrow">Process</p>
+        <h2 class="section-title">Clear steps, no surprises.</h2>
+      </div>
+      <div class="process">
+        <div class="process-step reveal">
+          <span class="step-dot"></span>
+          <h3>Discover</h3>
+          <p>A structured kickoff week — interviews, audit, and a documented strategy before any pixels.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="step-dot"></span>
+          <h3>Design</h3>
+          <p>Two rounds of design in a shared Figma workspace with weekly demos and async feedback.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="step-dot"></span>
+          <h3>Build</h3>
+          <p>Engineering with code reviews, staging links, and performance budgets checked at every commit.</p>
+        </div>
+        <div class="process-step reveal">
+          <span class="step-dot"></span>
+          <h3>Launch &amp; Support</h3>
+          <p>Zero-downtime launch, post-launch support window, and a quarterly growth retainer.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="testimonials">
+      <div class="section-head">
+        <p class="eyebrow">Client words</p>
+        <h2 class="section-title">They signed the check. Then they called again.</h2>
+      </div>
+      <div class="slider" id="slider">
+        <button class="slider-arrow prev" id="prevBtn" aria-label="Previous testimonial">&#8592;</button>
+        <div class="slider-viewport">
+          <div class="slides" id="slides"></div>
+        </div>
+        <button class="slider-arrow next" id="nextBtn" aria-label="Next testimonial">&#8594;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </section>
+
+    <section class="section contact-wrap" id="contact">
+      <div class="contact-info">
+        <p class="eyebrow">Let's talk</p>
+        <h2 class="section-title">Tell us about your project.</h2>
+        <p class="contact-copy">
+          Engagements start at $10,000. We reply to every serious inquiry within one business day.
+        </p>
+        <p class="contact-email"><a href="mailto:hello@novastudio.co">hello@novastudio.co</a></p>
+        <p class="contact-note">Prefer email? Use the form — it lands straight in our pipeline.</p>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <label>
+          <span>Name *</span>
+          <input type="text" name="name" required placeholder="Jordan Wells" />
+        </label>
+        <label>
+          <span>Email *</span>
+          <input type="email" name="email" required placeholder="you@company.com" />
+        </label>
+        <label>
+          <span>Company</span>
+          <input type="text" name="company" placeholder="Company Inc." />
+        </label>
+        <label>
+          <span>Budget range</span>
+          <select name="budget_range">
+            <option value="">Select a range</option>
+            <option>$10k – $15k</option>
+            <option>$15k – $25k</option>
+            <option>$25k – $50k</option>
+            <option>$50k+</option>
+          </select>
+        </label>
+        <label>
+          <span>Project details *</span>
+          <textarea name="message" required rows="4" placeholder="A few sentences about your goals, timeline and must-haves."></textarea>
+        </label>
+        <button class="btn btn-primary" type="submit">Send inquiry</button>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a class="brand" href="#top">nova<span class="dot">.</span></a>
+    <p class="footer-copy">© <span id="year"></span> Nova Studio. Built with care &amp; a little SQLite.</p>
+  </footer>
+
+  <div class="modal" id="modal" hidden>
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-card" id="modalCard" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-art" id="modalArt"></div>
+      <div class="modal-body">
+        <p class="eyebrow" id="modalCategory"></p>
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p class="modal-summary" id="modalSummary"></p>
+        <div class="modal-meta" id="modalMeta"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-tags" id="modalTags"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

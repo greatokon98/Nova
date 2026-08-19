@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova Studio — Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <header class="admin-nav">
+    <a class="brand" href="/">nova<span class="dot">.</span> <span class="admin-badge">admin</span></a>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <a class="back-link" href="/">&larr; Back to site</a>
+      <button id="logoutBtn" class="btn btn-ghost" style="padding: 6px 12px; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.2);">Logout</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <h1 class="page-title">Dashboard</h1>
+
+    <section class="stat-cards" id="statCards">
+      <div class="stat-card"><span class="sc-num" id="scProjects">–</span><span class="sc-label">Delivered projects</span></div>
+      <div class="stat-card"><span class="sc-num" id="scRevenue">–</span><span class="sc-label">Total revenue</span></div>
+      <div class="stat-card"><span class="sc-num" id="scClients">–</span><span class="sc-label">Active clients</span></div>
+      <div class="stat-card"><span class="sc-num" id="scInquiries">–</span><span class="sc-label">New inquiries</span></div>
+    </section>
+
+    <nav class="tabs" id="tabs">
+      <button class="tab active" data-tab="inquiries">Inquiries</button>
+      <button class="tab" data-tab="clients">Clients</button>
+      <button class="tab" data-tab="projects">Projects</button>
+    </nav>
+
+    <section class="panel active" id="panel-inquiries">
+      <div class="panel-head">
+        <h2>Inquiries</h2>
+        <span class="muted">Lead pipeline from the website form.</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Contact</th><th>Budget</th><th>Message</th><th>Status</th><th>Received</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="tbodyInquiries"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-clients">
+      <div class="panel-head">
+        <h2>Clients</h2>
+        <button class="btn btn-add" id="addClientBtn">+ Add client</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Name</th><th>Company</th><th>Email</th><th>Project</th><th>Status</th><th>Notes</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="tbodyClients"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel" id="panel-projects">
+      <div class="panel-head">
+        <h2>Projects</h2>
+        <button class="btn btn-add" id="addProjectBtn">+ Add project</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>Category</th><th>Client</th><th>Year</th><th>Budget</th><th>Status</th><th>Featured</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="tbodyProjects"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="clientModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <h3>Add client</h3>
+      <form id="clientForm" class="modal-form">
+        <label>Name *<input name="name" required /></label>
+        <label>Company<input name="company" /></label>
+        <label>Email<input name="email" type="email" /></label>
+        <label>Project
+          <select name="project_id"><option value="">— none —</option></select>
+        </label>
+        <label>Status
+          <select name="status"><option>active</option><option>inactive</option><option>lead</option></select>
+        </label>
+        <label>Notes<input name="notes" /></label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+          <button type="submit" class="btn btn-add">Save client</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal" id="projectModal" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-card">
+      <h3>Add project</h3>
+      <form id="projectForm" class="modal-form">
+        <label>Title *<input name="title" required /></label>
+        <div class="two-col">
+          <label>Category
+            <select name="category">
+              <option>Web Design</option><option>Web Development</option>
+              <option>Branding</option><option>Product Design</option>
+            </select>
+          </label>
+          <label>Client<input name="client" /></label>
+        </div>
+        <div class="two-col">
+          <label>Year<input name="year" type="number" placeholder="2025" /></label>
+          <label>Budget ($)<input name="budget" type="number" placeholder="15000" /></label>
+        </div>
+        <label>Summary<input name="summary" /></label>
+        <label>Description<textarea name="description" rows="3"></textarea></label>
+        <label>Tags (comma separated)<input name="tags" placeholder="React,Design,SEO" /></label>
+        <label class="check"><input type="checkbox" name="featured" value="1" /> Featured</label>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" data-close>Cancel</button>
+          <button type="submit" class="btn btn-add">Save project</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

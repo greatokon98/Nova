@@ -1,0 +1,21 @@
+{
+  "name": "tenk-portfolio",
+  "version": "1.0.0",
+  "description": "Premium portfolio site with PostgreSQL-backed client & project management",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.13.1"
+  }
+}
