@@ -77,7 +77,14 @@ app.get('/api/auth-status', (req, res) => {
 })
 
 app.get('/admin', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'admin.html'))
+  const token = req.cookies.admin_token
+  if (!token) return res.redirect('/login.html')
+  try {
+    jwt.verify(token, JWT_SECRET || 'fallback')
+    res.sendFile(path.join(__dirname, 'public', 'admin.html'))
+  } catch (err) {
+    res.redirect('/login.html')
+  }
 })
 
 // ---------- Projects ----------
