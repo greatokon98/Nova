@@ -511,5 +511,6 @@ img { max-width: 100%; display: block; }
   .slider { grid-template-columns: 1fr; }
   .slider-arrow { display: none; }
   .section { padding: 80px 20px; }
+  .hero { padding-bottom: 30px; }
   .stats { gap: 12px; }
 }
