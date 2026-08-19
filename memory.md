@@ -94,14 +94,35 @@ All routes, request/response shapes, and status codes preserved:
 20. `GET /admin` — HTTP 200
 21. `GET /` — HTTP 200
 
+## 2026-08-19 — Vercel Deployment Fix
+
+### Problem
+Deployed to Vercel but production domain showed "No Production Deployment" error.
+
+### Root Causes & Fixes
+
+#### `server.js`
+1. **`app.listen()` crashed serverless function** — moved inside `if (require.main === module)` guard so it only runs for local dev, not when required by `api/index.js`
+2. **`process.exit(1)` on missing env vars** — replaced with graceful HTTP 500 responses instead of killing the process
+3. **`process.exit(1)` on DB init failure** — changed to `dbReady = Promise.reject(err)` so the middleware returns 500 instead of crashing
+4. **`express.static()` disabled in production** — removed the `NODE_ENV !== 'production'` guard; Vercel's CDN handles static files but Express static is harmless as fallback
+5. **JWT_SECRET fallback `'fallback'` used in `jwt.sign()`/`jwt.verify()`** — replaced with inline fallback for safety
+
+#### `vercel.json`
+- Replaced deprecated `routes` config with modern `rewrites`
+- Removed `routes` for static files (Vercel handles `public/` automatically)
+- Added security headers (`X-Content-Type-Options`, `X-Frame-Options`, `X-XSS-Protection`)
+
+#### `api/index.js`
+- Changed from `module.exports = app` to `module.exports = (req, res) => app(req, res)` for proper Vercel handler export
+
 ### Deployment Steps
-1. Push to GitHub repo
+1. Push to GitHub repo (https://github.com/greatokon98/Nova)
 2. Connect repo to Vercel
 3. Set environment variables in Vercel dashboard:
-   - `DATABASE_URL` = your Neon connection string
-   - `JWT_SECRET` = your secret
-   - `ADMIN_PASSWORD` = your admin password
-   - `NODE_ENV` = `production`
+   - `DATABASE_URL` = Neon connection string
+   - `JWT_SECRET` = `19f1107f70bf87a62a6315c317a04de5c444aa16000d3838a667bc86d0df344d`
+   - `ADMIN_PASSWORD` = `nova_admin_2026!`
 4. Vercel auto-deploys on push
 
 ### Files Untouched (UI)
