@@ -94,7 +94,7 @@ All routes, request/response shapes, and status codes preserved:
 20. `GET /admin` — HTTP 200
 21. `GET /` — HTTP 200
 
-## 2026-08-19 — Vercel Deployment Fix
+## 2026-08-19 — Vercel Deployment Fix (v2)
 
 ### Problem
 Deployed to Vercel but production domain showed "No Production Deployment" error.
@@ -116,6 +116,10 @@ Deployed to Vercel but production domain showed "No Production Deployment" error
 #### `api/index.js`
 - Changed from `module.exports = app` to `module.exports = (req, res) => app(req, res)` for proper Vercel handler export
 
+#### `vercel.json` (v2 fix)
+- Removed `builds` key entirely — Vercel auto-detects Express from `api/index.js` and static files from `public/`
+- `builds` + `rewrites` together caused 404 because legacy Builder API skipped static file deployment
+
 ### Deployment Steps
 1. Push to GitHub repo (https://github.com/greatokon98/Nova)
 2. Connect repo to Vercel
@@ -136,3 +140,34 @@ Deployed to Vercel but production domain showed "No Production Deployment" error
 - `public/login.html`
 - `public/login.js`
 - `public/login.css`
+
+---
+
+## 2026-08-19 — Admin Auth Gate Fix
+
+### Problem
+`/admin` was served directly as a static file via Vercel rewrite, bypassing Express entirely. The admin page would flash before `admin.js` could check auth client-side and redirect to `/login.html`.
+
+### Root Cause
+`vercel.json` had `{ "source": "/admin", "destination": "/public/admin.html" }` — Vercel served the HTML file without any server-side auth check. `admin.js` then called `fetch('/api/auth-status')` to check auth, but the admin page was already visible.
+
+### Fix
+
+#### `vercel.json`
+- Changed `/admin` rewrite from `/public/admin.html` to `/api/index.js`
+- `/admin` now routes through Express serverless function
+
+#### `server.js` — `/admin` route (line 78-85)
+- Added server-side JWT cookie check before serving `admin.html`
+- No valid token → `res.redirect('/login.html')` (HTTP 302, instant, no flash)
+- Valid token → `res.sendFile('admin.html')` as before
+
+### Flow After Fix
+1. User visits `/admin` → Vercel routes to Express serverless function
+2. Express checks `req.cookies.admin_token`
+3. No token or invalid token → **instant 302 redirect** to `/login.html`
+4. Valid token → serves `admin.html` (admin sees dashboard)
+5. `/login.html` → if already authenticated, `login.js` redirects to `/admin`
+
+### Commit
+`39ab04a` — "fix: server-side /admin auth gate — no more flash of unauthenticated content"
